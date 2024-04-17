@@ -1,0 +1,10 @@
+{
+  "no_internet": "No ha sido posible conectar a internet.",
+  "siiau_caido": "SIIAU parece estar caído. Inténtalo más tarde.",
+
+  "credenciales_invalidas": "Tus credenciales son inválidas. Inténtalo de nuevo.",
+  "usuario_bloqueado": "Tu acceso a SIIAU ha sido bloqueado temporalmente. Inténtalo más tarde.",
+  "ingreso_no_valido": "Imposible iniciar sesión. Es probable que necesites actualizar.",
+
+  "error_desconocido": "Ha ocurrido un error desconocido."
+}
