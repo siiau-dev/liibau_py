@@ -2,8 +2,8 @@ import platform
 from os import path
 from requests import Session
 
-from .parser import SIIAUParser
-from .errores import SIIAUErrorPeticion
+from siiau_parser import SIIAUParser
+from siiau_errores import SIIAUErrorPeticion
 
 
 directorio_padre = path.abspath(__file__)
