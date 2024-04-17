@@ -1,4 +1,4 @@
-class EnlacesBaseSIIAU:
+class _EnlacesBaseSIIAU:
     _base_url = "siiauescolar.siiau.udg.mx"
 
     def _construir_enlace(self, ruta, metodo = None, base = None):

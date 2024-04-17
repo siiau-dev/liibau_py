@@ -1,4 +1,4 @@
-from .base import _SIIAUValidadorBase
+from .validador_base import _SIIAUValidadorBase
 
 class _SIIAUValidadorCredenciales(_SIIAUValidadorBase):
     _expresiones = {

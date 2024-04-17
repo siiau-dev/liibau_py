@@ -1,6 +1,6 @@
-from .base import EnlacesBaseSIIAU
+from .enlaces_base import _EnlacesBaseSIIAU
 
-class _EnlacesAlumnoSIIAU(EnlacesBaseSIIAU):
+class _EnlacesAlumnoSIIAU(_EnlacesBaseSIIAU):
     _enlaces = {
         # Inicio de sesión
         'inicio_paso1': "/wus/gupprincipal.forma_inicio",
