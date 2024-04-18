@@ -22,12 +22,12 @@ class _SIIAUParserInicio:
 
     def extraer_pidm(self) -> str:
         atributos = {
-            'name': 'n_pidm_n'
+            'name': 'p_pidm_n'
         }
 
         elemento = self._super_self._extraer_elemento_crudo('input', atributos)
 
-        return elemento.text if elemento else None
+        return elemento['value'] if elemento else None
 
     _errores_inicio_sesion = {
         'credenciales_invalidas': "alert('Los datos proporcionados no son validos');",
