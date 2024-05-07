@@ -74,12 +74,22 @@ class AlumnoSIIAU:
         if not self._pidm:
             # Hubo un error al iniciar sesión
             error = parser_paso_3.inicio.extraer_error_inicio_sesion()
-            raise SIIAUtils.errores.SIIAUErrorPeticion(error)
+            raise SIIAUtils.errores.SIIAUErrorPeticion(error, paso_3.text)
 
     @property
     def pidm(self):
         return self._pidm
 
+    @pidm.setter
+    def pidm(self, *args, **kwargs):
+        # Agregar SIIAUError
+        raise Exception("No es posible editar el pidm de un alumno. Crea una nueva sesión.")
+
     @property
     def cookies(self):
         return self._requester._sesion.cookies.get_dict()
+
+    @cookies.setter
+    def cookies(self, *args, **kwargs):
+        # Agregar SIIAUError
+        raise Exception("No es posible editar las cookies de un alumno. Crea una nueva sesión.")
