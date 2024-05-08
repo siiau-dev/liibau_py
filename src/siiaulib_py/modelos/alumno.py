@@ -7,10 +7,20 @@ class AlumnoSIIAU:
         self._requester = SIIAUtils.requester.SIIAURequester()
         self._auto_refresco = auto_refrecar_sesion
 
+        validador = SIIAUtils.validador.SIIAUValidador.inicio_sesion
+        if not validador.valida_codigo(codigo):
+            raise SIIAUtils.errores.SIIAUErrorInicioSesion(
+                'codigo_formato_incorrecto'
+            )
+
+        if not validador.valida_nip(nip):
+            raise SIIAUtils.errores.SIIAUErrorInicioSesion(
+                'nip_formato_incorrecto'
+            )
+
         self._codigo = codigo if self._auto_refresco else None
         self._nip = nip if self._auto_refresco else None
 
-        # Todo: validar codigo y nip
 
         # Creamos la sesión en cuanto se crea el objeto
         self.renovar_sesion(codigo, nip)
@@ -76,6 +86,8 @@ class AlumnoSIIAU:
             error = parser_paso_3.inicio.extraer_error_inicio_sesion()
             raise SIIAUtils.errores.SIIAUErrorPeticion(error, paso_3.text)
 
+    # Agregamos propiedades para que el usuario sepa que no debe modificarlas
+
     @property
     def pidm(self):
         return self._pidm
@@ -83,7 +95,8 @@ class AlumnoSIIAU:
     @pidm.setter
     def pidm(self, *args, **kwargs):
         # Agregar SIIAUError
-        raise Exception("No es posible editar el pidm de un alumno. Crea una nueva sesión.")
+        raise Exception("No es posible editar el pidm de un alumno. "
+                "Crea una nueva sesión.")
 
     @property
     def cookies(self):
@@ -92,4 +105,5 @@ class AlumnoSIIAU:
     @cookies.setter
     def cookies(self, *args, **kwargs):
         # Agregar SIIAUError
-        raise Exception("No es posible editar las cookies de un alumno. Crea una nueva sesión.")
+        raise Exception("No es posible editar las cookies de un alumno. "
+                "Crea una nueva sesión.")

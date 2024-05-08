@@ -1,9 +1,9 @@
 from .validador_base import _SIIAUValidadorBase
 
-class _SIIAUValidadorCredenciales(_SIIAUValidadorBase):
+class _SIIAUValidadorInicioSesion(_SIIAUValidadorBase):
     _expresiones = {
         'codigo': r'^\d{5}$|^\d{7,}$',
-        'nip': r'^[a-zA-Z0-9]{1,10}$'
+        'nip': r'^[a-zA-Z0-9]{1,10}$',
     }
 
     def valida_codigo(self, codigo: str):

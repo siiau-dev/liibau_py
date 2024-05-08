@@ -1,4 +1,4 @@
-from .validador_credenciales import _SIIAUValidadorCredenciales
+from .validador_inicio_sesion import _SIIAUValidadorInicioSesion
 
 class SIIAUValidador:
-    credenciales = _SIIAUValidadorCredenciales()
+    inicio_sesion = _SIIAUValidadorInicioSesion()

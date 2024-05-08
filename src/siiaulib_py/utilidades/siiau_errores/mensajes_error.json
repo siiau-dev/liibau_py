@@ -6,5 +6,8 @@
   "usuario_bloqueado": "Tu acceso a SIIAU ha sido bloqueado temporalmente. Inténtalo más tarde.",
   "ingreso_no_valido": "Imposible iniciar sesión. Es probable que necesites actualizar.",
 
-  "error_desconocido": "Ha ocurrido un error desconocido."
+  "error_desconocido": "Ha ocurrido un error desconocido.",
+
+  "codigo_formato_incorrecto": "Tu código no está en el formato adecuado.",
+  "nip_formato_incorrecto": "Tu NIP no está en el formato adecuado.",
 }
