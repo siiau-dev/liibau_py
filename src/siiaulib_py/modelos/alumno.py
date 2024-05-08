@@ -24,7 +24,7 @@ class AlumnoSIIAU:
 
         # Creamos la sesión en cuanto se crea el objeto
         self.renovar_sesion(codigo, nip)
-
+        self._conseguir_planes()
 
     def _peticion(self, *args, **kwargs):
         # Todo: implementar lógica para cuando la sesión explira
@@ -86,6 +86,32 @@ class AlumnoSIIAU:
             error = parser_paso_3.inicio.extraer_error_inicio_sesion()
             raise SIIAUtils.errores.SIIAUErrorPeticion(error, paso_3.text)
 
+    def _conseguir_planes(self):
+        enlaces = SIIAUtils.enlaces.EnlacesSIIAU.alumno
+        parser = SIIAUtils.parser.SIIAUParser
+
+        payload = {
+            'p_sistema_c': 'ALUMNOS',
+            'p_sistemaid_n': 3,
+            'p_menupredid_n': 3,
+            'p_pidm_n': self._pidm
+        }
+
+        respuesta = self._peticion(
+            tipo = 'POST',
+            url = enlaces.construir_enlace('planes'),
+            payload = payload
+        )
+
+        parser_planes = parser(respuesta.text)
+        self._planes_estudio = parser_planes.inicio.extraer_planes()
+
+        # Teóricamente esto no debería pasar
+        if not self._planes_estudio:
+            raise SIIAUtils.errores.SIIAUErrorInicioSesion(
+                'no_planes_estudio'
+            )
+
     # Agregamos propiedades para que el usuario sepa que no debe modificarlas
 
     @property
@@ -107,3 +133,13 @@ class AlumnoSIIAU:
         # Agregar SIIAUError
         raise Exception("No es posible editar las cookies de un alumno. "
                 "Crea una nueva sesión.")
+
+    @property
+    def planes_estudio(self):
+        return self._planes_estudio
+
+    @planes_estudio.setter
+    def planes_estudio(self, *args, **kwargs):
+        # Agregar SIIAUError
+        raise Exception("No es posible cambiar los planes de estudio de un "
+                "alumno. Crea una nueva sesión.")

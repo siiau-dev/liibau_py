@@ -10,4 +10,5 @@
 
   "codigo_formato_incorrecto": "Tu código no está en el formato adecuado.",
   "nip_formato_incorrecto": "Tu NIP no está en el formato adecuado.",
+  "no_planes_estudio": "No ha sido posible recuperar los planes de estudio del alumno."
 }

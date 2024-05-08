@@ -1,3 +1,5 @@
+import re
+
 class _SIIAUParserInicio:
     def __init__(self, super_self):
         self._super_self = super_self
@@ -28,6 +30,53 @@ class _SIIAUParserInicio:
         elemento = self._super_self._extraer_elemento_crudo('input', atributos)
 
         return elemento['value'] if elemento else None
+
+    def extraer_planes(self):
+        planes_estudio = []
+
+        atributos_planes = {
+            'name': 'p_carrera'
+        }
+
+        lista_planes_estudio = self._super_self._extraer_elemento_crudo(
+            'select',
+            atributos_planes
+        )
+
+        if lista_planes_estudio:
+            for plan in lista_planes_estudio.find_all('option'):
+                planes_estudio.append(plan.text)
+                #planes_estudio.append(plan.text[:plan.text.index('-')])
+
+        else:
+            # Sólo hay un plan de estudios, lo sacamos de otra forma
+
+            # Este validador lo ponemos aquí y no en siiau_validador por la
+            # forma en la que funcionan los módulos en Python, igual esta
+            # librería será obsoleta pronto
+            validador_plan = re.compile(r'^sgpofer\.secciones')
+
+            atributos_plan = {
+                'href': validador_plan
+            }
+
+            elemento_plan_estudios = self._super_self._extraer_elemento_crudo(
+                'a',
+                atributos_plan
+            )
+
+            if not elemento_plan_estudios:
+                # Manejaremos el error más delante
+                return None
+
+            # El plan de estudios se encuentra en un link, lo extraemos de
+            # esta manera
+            link_plan = elemento_plan_estudios.get('href')
+            planes_estudio.append(link_plan[link_plan.index('majrp=') + 6:])
+
+        # To do: Ordenar por orden cronológico
+        # ... Para la siguiente librería
+        return planes_estudio
 
     _errores_inicio_sesion = {
         'credenciales_invalidas': "alert('Los datos proporcionados no son validos');",
