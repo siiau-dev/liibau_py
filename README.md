@@ -1,4 +1,4 @@
-# siiaulib_py
+# liibau_py
 
 Librería de comunicación con el UdeG SIIAU
 

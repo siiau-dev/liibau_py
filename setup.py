@@ -3,7 +3,7 @@ from setuptools import setup
 
 info = {}
 curdir = path.abspath(path.dirname(__file__))
-with open(path.join(curdir, "src", "siiaulib_py", "__info__.py"), "r") as f:
+with open(path.join(curdir, "src", "liibau_py", "__info__.py"), "r") as f:
     exec(f.read(), info)
 
 with open('README.md', 'r') as f:
